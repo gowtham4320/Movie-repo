@@ -1,0 +1,178 @@
+.main
+    background linear-gradient(150deg, rgba(244,117,142,1) 10%, rgba(226,105,48,1) 64%);
+    color black
+    width 100%
+    height 100%
+    display: flex
+    flex-direction: row
+
+.images
+    flex-grow: 10
+
+.sign
+    background-color white
+    display flex
+    flex-direction column
+    align-items center
+    height 100%
+    box-shadow 0px 0px 10px 1px grey 
+    transition 0.5s ease-out;
+    flex-wrap: wrap
+    &.in
+        width: 30%
+        margin-left: 70%
+        margin-right: 0%
+
+        @media screen and (min-width: 200px) and (orientation: portrait)
+            height 80%
+            margin-top: 20%
+            width: 100%
+            margin-left: 3%
+            margin-right: 3%
+            border-radius: 2%
+
+        @media screen and (min-width: 300px) and (orientation: portrait)
+            height 80%
+            margin-top: 20%
+            width: 100%
+            margin-left: 5%
+            margin-right: 5%
+            border-radius: 2%
+        @media screen and (min-width: 600px) and (orientation: landscape)
+            height 90%
+            margin: auto
+            width: 50%
+            // margin-left: 0%
+            margin-right: 25%
+            border-radius: 2%
+        @media screen and (min-width: 700px) and (orientation: landscape)
+            height 95%
+            margin: auto
+            width: 60%
+            // margin-left: 0%
+            margin-right: 20%
+            border-radius: 2%
+
+        @media screen and (min-width:1000px)
+            height 100%
+            margin-top: 0%
+            width: 30%
+            margin-left: 70%
+            margin-right: 0%
+            border-radius: 0%
+
+    &.up
+        width: 30%
+        margin-left: 0%
+        margin-right: 70%
+
+        @media screen and (min-width: 200px) and (orientation: portrait)
+            height 85%
+            margin-top: 20%
+            width: 100%
+            margin-left: 3%
+            margin-right: 3%
+            border-radius: 2%
+        
+        @media screen and (min-width: 300px) and (orientation: portrait)
+            height 90%
+            margin-top: 10%
+            width: 100%
+            margin-left: 5%
+            margin-right: 5%
+            border-radius: 2%
+
+        @media screen and (min-width: 600px) and (orientation: landscape)
+            height 95%
+            margin: auto
+            width: 50%
+            margin-right: 25%
+            border-radius: 2%
+        @media screen and (min-width: 700px) and (orientation: landscape)
+            height 100%
+            margin: auto
+            width: 60%
+            margin-right: 20%
+            border-radius: 2%
+
+        @media screen and (min-width:1000px)
+            height 100%
+            margin-top: 0%
+            width: 30%
+            margin-left: 0%
+            margin-right: 70%
+            border-radius: 0%
+
+
+.logo
+    margin-top 20px
+    justify-content: center
+    align-items: center
+    width: 100%
+    height: 30%
+    margin-bottom: none
+    @media screen and (min-width: 600px) and (orientation: landscape)
+        width: 8vw
+        height 7vh
+    @media screen and (min-width: 1000px) and (orientation: landscape)
+        width: 100%
+        height 30%
+
+.loginForm
+    margin auto;
+    display flex
+    flex-direction column
+    gap 20px
+
+.fields
+    display flex
+    flex-direction column
+    align-items center
+    gap 20px
+
+.submitButton
+    width:250px
+
+
+.signUpMsg
+    color rgb(153, 151, 151)
+    padding-bottom: 2%
+
+.signUpButton
+    cursor pointer
+    &:hover
+        color orange
+        text-decoration underline
+.avatar
+    margin auto
+    @media screen and (min-width: 200px) and (orientation: portrait)
+        width: 35vw !important
+        height: 15vh !important
+
+    @media screen and (min-width: 300px) and (orientation: portrait)
+        width: 30vw !important
+        height: 17vh !important
+    
+    @media screen and (max-width: 700px) and (orientation: landscape)
+        width: 18w !important
+        height: 17vh !important
+
+    @media screen and (min-width:1000px)
+        width: 8vw !important
+        height: 17vh !important
+
+.formFields
+    width: 100%
+    height: 100%
+    // @media screen and (min-width: 600px) and (orientation: landscape)
+    //     width: 80%
+    //     height: 80%
+    // @media screen and (min-width:1000px)
+    //     width: 100%
+    //     height: 100%
+
+.inputAdorements
+    border-right: 2px solid rgb(68, 67, 67)
+    padding-right: 5%
+.formError
+    color: red
