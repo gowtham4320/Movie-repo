@@ -1,17 +1,17 @@
-
 const initialState = {
-    snackBarText:""
+  snackBarText: "",
 };
 
-export const snackBarReducer = (state = initialState, { type, payload }: any) => {
-
-    switch (type) {
-
-        case "Success":
-            return { ...state,snackBarText:payload??"" };
-        case "Failure":
-            return { ...state, snackBarText: payload??"" };
-        default:
-            return state
-    }
-}
+export const snackBarReducer = (
+  state = initialState,
+  { type, payload }: any
+) => {
+  switch (type) {
+    case "Success":
+      return { ...state, snackBarText: payload ?? "" };
+    case "Failure":
+      return { ...state, snackBarText: payload ?? "" };
+    default:
+      return state;
+  }
+};

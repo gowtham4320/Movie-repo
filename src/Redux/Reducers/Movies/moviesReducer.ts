@@ -1,21 +1,18 @@
-
 const initialState = {
-    movieList:[],
-    error: false,
-    searchQuery:""
+  movieList: [],
+  error: false,
+  searchQuery: "",
 };
 
 export const movieReducer = (state = initialState, { type, payload }: any) => {
+  switch (type) {
+    case "MOVIE_LIST":
+      return { ...state, movieList: payload };
 
-    switch (type) {
+    case "MOVIE_SEARCHED_FAILURE":
+      return { ...state, error: true };
 
-        case "MOVIE_LIST":
-            return { ...state, movieList:payload};
-
-        case "MOVIE_SEARCHED_FAILURE":
-            return { ...state, error:true };
-       
-        default:
-            return state
-    }
-}
+    default:
+      return state;
+  }
+};
