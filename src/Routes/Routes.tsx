@@ -14,7 +14,6 @@ export default function AppRoute() {
   React.useEffect(() => {
     window.addEventListener("beforeunload", () => {});
     if (location.pathname === "/") {
-      console.log("login PATH???????????????????????");
       dispatch(logoutAction());
       navigate("/", { replace: true, state: { clearHistory: true } });
     }

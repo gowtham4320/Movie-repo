@@ -1,13 +1,13 @@
 import React from "react";
 import "./login.styl";
 import LoginForm from "./loginForm";
-import logo from "../../assets/images/Infosys2.png";
 import RegisterUser from "../Registration/registerUser";
 import { Avatar } from "@mui/material";
 import { useAppDispatch, useAppSelector } from "../../Redux/Store/Hooks";
 import { useNavigate } from "react-router-dom";
 import { snackBarText } from "../../Redux/Actions/snackbar/snackbarAction";
 import { submitAction } from "../../Redux/Actions/Login/loginActions";
+import { snackbarActionTypes } from "../../@types/redux/actions/snackbar/snackbarActionTypes";
 
 export default function Login() {
   const [signup, setsignup] = React.useState<boolean>(false);
@@ -26,7 +26,7 @@ export default function Login() {
         type: "FETCH_USER_SUCCESS",
         payload: {},
       });
-      dispatch(snackBarText("Success", "Login Success !"));
+      snackBarText(snackbarActionTypes.SUCCESS, "Login Success !")
       navigate("/home");
     } else {
       dispatch(submitAction({ ...values, expiresIn: 60000 }));
@@ -73,12 +73,8 @@ export default function Login() {
 
   return (
     <div className="main">
-      <div className="images">
-      </div>
+      <div className="images"></div>
       <div className={signup === false ? "sign in" : "sign up"}>
-        <div>
-          <img src={logo} className="logo" />
-        </div>
         <div style={{ display: signup === false ? "block" : "none" }}>
           <Avatar className="avatar" />
         </div>

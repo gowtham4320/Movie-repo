@@ -1,15 +1,22 @@
+import { movieActionTypes } from "../../../@types/redux/actions/movies/movieActionTypes";
+
 const initialState = {
   movieList: [],
   error: false,
   searchQuery: "",
 };
 
-export const movieReducer = (state = initialState, { type, payload }: any) => {
+interface actionPayload {
+  type:movieActionTypes,
+  payload:object
+}
+
+export const movieReducer = (state = initialState, { type, payload }: actionPayload) => {
   switch (type) {
-    case "MOVIE_LIST":
+    case movieActionTypes.MOVIE_LIST:
       return { ...state, movieList: payload };
 
-    case "MOVIE_SEARCHED_FAILURE":
+    case movieActionTypes.MOVIE_SEARCHED_FAILURE:
       return { ...state, error: true };
 
     default:

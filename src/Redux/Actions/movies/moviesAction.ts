@@ -1,12 +1,14 @@
+import { movieActionTypes } from "../../../@types/redux/actions/movies/movieActionTypes";
+
 export const popularList = () => {
   return {
-    type: "POPULAR_MOVIES",
+    type: movieActionTypes.POPULAR_MOVIE,
   };
 };
 
 export const searchMovie = (searchQuery: string) => {
   return {
-    type: "SEARCH_MOVIE",
+    type: movieActionTypes.SEARCH_MOVIE,
     payload: searchQuery,
   };
 };

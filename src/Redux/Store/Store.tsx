@@ -9,10 +9,10 @@ import thunk from "redux-thunk";
 import { loginReducer } from "../Reducers/Login/loginReducer";
 import { snackBarReducer } from "../Reducers/Snackbar/snackbarReducer";
 import { combineEpics, createEpicMiddleware } from "redux-observable";
-import loginEpic from "../../Epics/loginEpic";
-import movieEpic from "../../Epics/movieEpic";
+import loginEpic from "../Epics/loginEpic";
+import movieEpic from "../Epics/movieEpic";
 import { movieReducer } from "../Reducers/Movies/moviesReducer";
-import movieSearchedEpic from "../../Epics/movieSearched";
+import movieSearchedEpic from "../Epics/movieSearched";
 
 declare global {
   interface Window {
@@ -36,5 +36,5 @@ const allEpics = combineEpics(loginEpic, movieEpic, movieSearchedEpic);
 epics.run(allEpics);
 export default Store;
 export type RootState = ReturnType<typeof Store.getState>;
-// Inferred type: {posts: PostsState, comments: CommentsState, users: UsersState}
+
 export type AppDispatch = typeof Store.dispatch;

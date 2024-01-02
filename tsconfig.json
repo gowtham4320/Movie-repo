@@ -30,9 +30,4 @@
         "*.config.js",
         "*.test.ts*"
     ],
-    "ts-node": {
-        "compilerOptions": {
-            "module": "CommonJS"
-        }
-    }
 }

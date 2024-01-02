@@ -1,4 +1,4 @@
-import { ActionTypes } from "../../Actions/Login/loginActionTypes";
+import { loginActionTypes } from "../../../@types/redux/actions/login/loginActionTypes";
 
 const initialState = {
   loading: false,
@@ -6,10 +6,17 @@ const initialState = {
   error: "",
 };
 
-export const loginReducer = (state = initialState, { type, payload }: any) => {
-  console.log("login Reducer");
+interface actionPayload {
+  type: loginActionTypes;
+  payload: object;
+}
+
+export const loginReducer = (
+  state = initialState,
+  { type, payload }: actionPayload
+) => {
   switch (type) {
-    case ActionTypes.FETCH_SUCCESS:
+    case loginActionTypes.FETCH_SUCCESS:
       return {
         ...state,
         loading: false,
@@ -17,9 +24,9 @@ export const loginReducer = (state = initialState, { type, payload }: any) => {
         userData: payload,
         error: false,
       };
-    case ActionTypes.FETCH_FAILURE:
+    case loginActionTypes.FETCH_FAILURE:
       return { ...state, loading: false, error: true, result: false };
-    case "LOGOUT":
+    case loginActionTypes.LOGOUT:
       return { ...state, ...initialState };
     default:
       return state;
