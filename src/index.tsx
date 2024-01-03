@@ -4,7 +4,7 @@ import "./index.styl";
 import App from "./App";
 import { Provider } from "react-redux";
 import Store from "./Redux/Store/Store";
-import { HashRouter as Router } from "react-router-dom";
+import { BrowserRouter as Router } from "react-router-dom";
 import "rxjs";
 
 const root = ReactDOM.createRoot(
