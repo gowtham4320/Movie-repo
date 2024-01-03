@@ -8,7 +8,7 @@ async function submitToServer(searchQuery: string) {
   try {
     const options = {
       method: "GET",
-      url: "http://api.themoviedb.org/3/search/movie",
+      url: "https://api.themoviedb.org/3/search/movie",
       params: {
         query: searchQuery,
         include_adult: "false",

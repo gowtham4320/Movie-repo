@@ -7,7 +7,7 @@ import { movieActionTypes } from "../../@types/redux/actions/movies/movieActionT
 async function submitToServer() {
   try {
     const response = axios.get(
-      "http://api.themoviedb.org/3/movie/popular?api_key=8bd650675ecd3ba6656d06a49e5fcc6d"
+      "https://api.themoviedb.org/3/movie/popular?api_key=8bd650675ecd3ba6656d06a49e5fcc6d"
     );
     return await response;
   } catch (error: any) {
