@@ -45,13 +45,10 @@ module.exports = {
             template: path.resolve(__dirname, "public", "index.html"),
             filename: "index.html",
         }),
-        // new CopyPlugin({
-        //     patterns: [{ from: 'src/icons' }],
-        // }),
     ],
     output: {
         filename: 'bundle.js',
-        path: path.resolve(__dirname, 'build'),
+        path: path.resolve("https://movie-repo-seven.vercel.app/", 'build'),
         clean: true,
     },
 };
