@@ -1,5 +1,5 @@
 import "./Home.styl";
-import { Card, InputAdornment, TextField, Grid, Rating } from "@mui/material";
+import { Card, InputAdornment, TextField, Grid, Rating, IconButton, Tooltip } from "@mui/material";
 import SearchRoundedIcon from "@mui/icons-material/SearchRounded";
 import { useAppDispatch, useAppSelector } from "../../Redux/Store/Hooks";
 import {
@@ -7,12 +7,13 @@ import {
   searchMovie,
 } from "../../Redux/Actions/movies/moviesAction";
 import { useEffect, useState } from "react";
+import PlayCircleIcon from "@mui/icons-material/PlayCircle";
 
 export default function Home() {
   const [searchText, setSearchText] = useState<string>("");
   const [searched, setSearched] = useState<boolean>(true);
   const [searchFocus] = useState<boolean>(false);
-  const { movieList } :any = useAppSelector((state) => state.movies);
+  const { movieList }: any = useAppSelector((state) => state.movies);
   const dispatch = useAppDispatch();
 
   useEffect(() => {
@@ -57,16 +58,20 @@ export default function Home() {
         </div>
         <Grid container className="movies">
           {movieList?.results?.map((movie: any) => (
-            <Grid item lg={4} md={4} sm={6} xs={12} key={movie.id}>
+            <Grid item lg={4} md={6} sm={8} xs={12} key={movie.id}>
               <Card className="movieCard">
                 <div className="movieInfo">
                   <div className="movieInfoText"> {movie.overview}</div>
+                  <div style={{display:"flex",flexDirection:"row"}}>
                   <Rating
                     value={movie.vote_average / 2}
                     size="large"
                     precision={0.1}
                     readOnly
+                    sx={{flexGrow:1}}
                   />
+                  <Tooltip title="Watch Trailer" placement="top" arrow><IconButton className="trailerButton" ><PlayCircleIcon className="trailerButtonIcon" /></IconButton></Tooltip>
+                  </div>
                 </div>
                 {movie.poster_path === null ? (
                   <div className="movieTitle">{movie.title}</div>
