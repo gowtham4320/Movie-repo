@@ -2,12 +2,14 @@ import React from "react";
 import "./login.styl";
 import LoginForm from "./loginForm";
 import RegisterUser from "../Registration/registerUser";
-import { Avatar } from "@mui/material";
 import { useAppDispatch, useAppSelector } from "../../Redux/Store/Hooks";
 import { useNavigate } from "react-router-dom";
 import { snackBarText } from "../../Redux/Actions/snackbar/snackbarAction";
 import { submitAction } from "../../Redux/Actions/Login/loginActions";
 import { snackbarActionTypes } from "../../@types/redux/actions/snackbar/snackbarActionTypes";
+import logo from "../../assets/images/Web capture_5-1-2024_191259_looka.com.png";
+import { GoogleLogin } from "@react-oauth/google";
+import { jwtDecode } from "jwt-decode";
 
 export default function Login() {
   const [signup, setsignup] = React.useState<boolean>(false);
@@ -26,7 +28,7 @@ export default function Login() {
         type: "FETCH_USER_SUCCESS",
         payload: {},
       });
-      snackBarText(snackbarActionTypes.SUCCESS, "Login Success !")
+      snackBarText(snackbarActionTypes.SUCCESS, "Login Success !");
       navigate("/home");
     } else {
       dispatch(submitAction({ ...values, expiresIn: 60000 }));
@@ -65,7 +67,6 @@ export default function Login() {
     //     })
   };
   React.useEffect(() => {
-    console.log(result, "21313");
     if (result) {
       navigate("/home");
     }
@@ -75,22 +76,45 @@ export default function Login() {
     <div className="main">
       <div className="images"></div>
       <div className={signup === false ? "sign in" : "sign up"}>
-        <div style={{ display: signup === false ? "block" : "none" }}>
-          <Avatar className="avatar" />
+        <div>
+          <img src={logo} className="logo" />
         </div>
-        <div className="loginForm">
-          {!signup ? (
-            <LoginForm onSubmit={loginSubmit} />
-          ) : (
-            <RegisterUser onSubmit={signUpSubmit} />
-          )}
-        </div>
-        <span className="signUpMsg">
-          {signup ? "Already have a account" : "Don't have a account"}{" "}
-          <span onClick={SignUp} className="signUpButton">
-            {signup ? "Sign-In!" : "Sign-Up!"}
+        <div className="wrapper">
+          <div className="wrapper_form">
+            {!signup ? (
+              <LoginForm onSubmit={loginSubmit} />
+            ) : (
+              <RegisterUser onSubmit={signUpSubmit} />
+            )}
+          </div>
+          <span className="signUpMsg">
+            {signup ? "Already have a account" : "Don't have a account"}{" "}
+            <span onClick={SignUp} className="signUpButton">
+              {signup ? "Sign-In!" : "Sign-Up!"}
+            </span>
           </span>
-        </span>
+          <div
+            style={{
+              borderTop: "1px solid",
+              borderColor: "lightgray",
+              width: "102%",
+              marginLeft: "-0.1vw",
+            }}
+          />
+          <div style={{marginLeft:"105px"}}>
+          <GoogleLogin
+            onSuccess={(credentialResponse) => {
+              console.log(jwtDecode(credentialResponse.credential||""));
+            }}
+            onError={() => {
+              console.log("Login Failed");
+            }}
+            shape="pill"
+            size="large"
+            type="icon"
+          />
+          </div>
+        </div>
       </div>
     </div>
   );
