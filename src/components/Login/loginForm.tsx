@@ -48,7 +48,7 @@ let LoginForm = (props: any) => {
             <Field
               name="username"
               component={renderTextField}
-              label="Username"
+              label="Email"
               InputProps={{
                 startAdornment: (
                   <InputAdornment position="start">

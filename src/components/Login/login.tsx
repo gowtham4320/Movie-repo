@@ -4,9 +4,9 @@ import LoginForm from "./loginForm";
 import RegisterUser from "../Registration/registerUser";
 import { useAppDispatch, useAppSelector } from "../../Redux/Store/Hooks";
 import { useNavigate } from "react-router-dom";
-import { snackBarText } from "../../Redux/Actions/snackbar/snackbarAction";
+//import { snackBarText } from "../../Redux/Actions/snackbar/snackbarAction";
 import { submitAction } from "../../Redux/Actions/Login/loginActions";
-import { snackbarActionTypes } from "../../@types/redux/actions/snackbar/snackbarActionTypes";
+//import { snackbarActionTypes } from "../../@types/redux/actions/snackbar/snackbarActionTypes";
 import logo from "../../assets/images/Web capture_5-1-2024_191259_looka.com.png";
 import { GoogleLogin } from "@react-oauth/google";
 import { jwtDecode } from "jwt-decode";
@@ -24,11 +24,8 @@ export default function Login() {
   const loginSubmit = async (values: { [key: string]: string }) => {
     //dispatch(popularList())
     if (values.username === "admin" && values.password === "admin") {
-      dispatch({
-        type: "FETCH_USER_SUCCESS",
-        payload: {},
-      });
-      snackBarText(snackbarActionTypes.SUCCESS, "Login Success !");
+      dispatch(submitAction({}));
+      // dispatch(snackBarText(snackbarActionTypes.SUCCESS, "Login Success !"))
       navigate("/home");
     } else {
       dispatch(submitAction({ ...values, expiresIn: 60000 }));
@@ -93,27 +90,33 @@ export default function Login() {
               {signup ? "Sign-In!" : "Sign-Up!"}
             </span>
           </span>
-          <div
-            style={{
-              borderTop: "1px solid",
-              borderColor: "lightgray",
-              width: "102%",
-              marginLeft: "-0.1vw",
-            }}
-          />
-          <div style={{marginLeft:"105px"}}>
-          <GoogleLogin
-            onSuccess={(credentialResponse) => {
-              console.log(jwtDecode(credentialResponse.credential||""));
-            }}
-            onError={() => {
-              console.log("Login Failed");
-            }}
-            shape="pill"
-            size="large"
-            type="icon"
-          />
-          </div>
+          {!signup && (
+            <div
+              style={{
+                borderTop: "1px solid",
+                borderColor: "lightgray",
+                width: "102%",
+                marginLeft: "-0.1vw",
+              }}
+            >
+              <div style={{ marginLeft: "110px", marginTop:"15px" }}>
+                <GoogleLogin
+                  onSuccess={(credentialResponse) => {
+                    jwtDecode(credentialResponse.credential || "")?dispatch({
+                      type: "FETCH_USER_SUCCESS",
+                      payload: {},
+                    }):null
+                  }}
+                  onError={() => {
+                    console.log("Login Failed");
+                  }}
+                  shape="pill"
+                  size="large"
+                  type="icon"
+                />
+              </div>
+            </div>
+          )}
         </div>
       </div>
     </div>

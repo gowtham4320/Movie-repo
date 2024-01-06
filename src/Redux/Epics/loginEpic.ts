@@ -6,6 +6,7 @@ import { snackBarText } from "../Actions/snackbar/snackbarAction";
 import Store from "../Store/Store";
 import { popularList } from "../Actions/movies/moviesAction";
 import { snackbarActionTypes } from "../../@types/redux/actions/snackbar/snackbarActionTypes";
+import { loginActionTypes } from "../../@types/redux/actions/login/loginActionTypes";
 
 async function submitToServer(data: object) {
   try {
@@ -19,22 +20,23 @@ async function submitToServer(data: object) {
   }
 }
 
-const loginEpic = (action$: any, { getState, dispatch }: any) =>
+const loginEpic = (action$: any,getState:any,dispatch: any) =>
   action$.pipe(
     ofType("REQUEST_SUBMIT"),
     mergeMap((action: any) =>
       from(submitToServer(action.payload)).pipe(
         map((res: any) => {
-          console.log(res);
+          Store.dispatch(
             snackBarText(
               snackbarActionTypes.SUCCESS,
               action.payload.expiresIn
                 ? "Login Success !"
                 : "Registration Success !"
             )
+          );
           Store.dispatch(popularList());
           return {
-            type: "FETCH_USER_SUCCESS",
+            type: loginActionTypes.FETCH_SUCCESS,
             payload: res.data,
           };
         }),
@@ -42,11 +44,13 @@ const loginEpic = (action$: any, { getState, dispatch }: any) =>
           of(error).pipe(
             map((res: any) => {
               console.log(res);
-              snackBarText(
-                snackbarActionTypes.FAILURE,
-                action.payload.expiresIn
-                  ? "Login Failed !"
-                  : "Registration Failed !"
+              Store.dispatch(
+                snackBarText(
+                  snackbarActionTypes.FAILURE,
+                  action.payload.expiresIn
+                    ? "Login Failed !"
+                    : "Registration Failed !"
+                )
               );
               return {
                 type: "FETCH_USER_FAILURE",
