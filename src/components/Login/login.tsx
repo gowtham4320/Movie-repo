@@ -24,7 +24,10 @@ export default function Login() {
   const loginSubmit = async (values: { [key: string]: string }) => {
     //dispatch(popularList())
     if (values.username === "admin" && values.password === "admin") {
-      dispatch(submitAction({}));
+      dispatch({
+        type: "FETCH_USER_SUCCESS",
+        payload: {},
+      });
       // dispatch(snackBarText(snackbarActionTypes.SUCCESS, "Login Success !"))
       navigate("/home");
     } else {
@@ -90,7 +93,6 @@ export default function Login() {
               {signup ? "Sign-In!" : "Sign-Up!"}
             </span>
           </span>
-          {!signup && (
             <div
               style={{
                 borderTop: "1px solid",
@@ -99,13 +101,15 @@ export default function Login() {
                 marginLeft: "-0.1vw",
               }}
             >
-              <div style={{ marginLeft: "110px", marginTop:"15px" }}>
+              <div style={{ marginLeft: "110px", marginTop: "15px" }}>
                 <GoogleLogin
                   onSuccess={(credentialResponse) => {
-                    jwtDecode(credentialResponse.credential || "")?dispatch({
-                      type: "FETCH_USER_SUCCESS",
-                      payload: {},
-                    }):null
+                    jwtDecode(credentialResponse.credential || "")
+                      ? dispatch({
+                          type: "FETCH_USER_SUCCESS",
+                          payload: {},
+                        })
+                      : null;
                   }}
                   onError={() => {
                     console.log("Login Failed");
@@ -116,7 +120,6 @@ export default function Login() {
                 />
               </div>
             </div>
-          )}
         </div>
       </div>
     </div>
