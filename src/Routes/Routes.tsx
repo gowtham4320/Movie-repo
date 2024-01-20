@@ -1,8 +1,8 @@
 import { Routes, Route, useLocation, useNavigate } from "react-router-dom";
-import Login from "../components/Login/login";
-import Home from "../components/Home/Home";
+import Login from "../Pages/Login/login";
+import Home from "../Pages/Home/Home";
 import * as React from "react";
-import Header from "../components/Header/Header";
+import Header from "../Pages/Header/Header";
 import { useAppDispatch } from "../Redux/Store/Hooks";
 import { logoutAction } from "../Redux/Actions/Login/loginActions";
 import ProtectLogin from "./PrivateRoute";

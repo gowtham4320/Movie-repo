@@ -33,8 +33,8 @@ export default function App() {
     <>
       <div className="App">
         <AppRoute />
-        <div className="snackbar">{snackBarText}</div>
       </div>
+      <div className="snackbar">{snackBarText}</div>
       <Backdrop sx={{ color: "#fff", zIndex: 9999 }} open={loading}>
         <Stack gap={1} justifyContent="center" alignItems="center">
           <div className="loader"></div>

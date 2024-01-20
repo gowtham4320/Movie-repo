@@ -55,37 +55,3 @@ $grbg2 = linear-gradient( 135deg, rgba(#E2B0FF,1), rgba(#9F44D3,.95))
   75%
     right 0
     transform translateZ(-10vh)
-
-.snackbar
-  visibility hidden
-  min-width 250px
-  margin-left -125px
-  color #fff
-  text-align center
-  padding 16px
-  position fixed
-  z-index 1
-  left 10%
-  bottom 30px
-  border-radius: 5px
-  &.show
-    visibility visible
-    animation: fadein 0.8s, fadeout 0.8s 3s;
-    &.SUCCESS
-      background-color rgb(51, 170, 57)
-      box-shadow 0px 0px 5px 1px rgb(92, 140, 48) 
-    &.FAILURE
-      background-color rgb(211, 47, 47) 
-      box-shadow 0px 0px 5px 1px rgb(162, 37, 37) 
-    
-
-@keyframes fadein {
-  from {bottom: 0; opacity: 0;}
-  to {bottom: 30px; opacity: 1;}
-}
-
-@keyframes fadeout {
-  from {bottom: 30px; opacity: 1;}
-  to {bottom: 0; opacity: 0;}
-}
-  
