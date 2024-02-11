@@ -16,7 +16,7 @@ export const loginReducer = (
   { type, payload }: actionPayload
 ) => {
   switch (type) {
-    case loginActionTypes.FETCH_SUCCESS:
+    case loginActionTypes.LOGIN_SUCCESS:
       return {
         ...state,
         loading: false,
@@ -24,7 +24,7 @@ export const loginReducer = (
         userData: payload,
         error: false,
       };
-    case loginActionTypes.FETCH_FAILURE:
+    case loginActionTypes.LOGIN_FAILURE:
       return { ...state, loading: false, error: true, result: false };
     case loginActionTypes.LOGOUT:
       return { ...state, ...initialState };

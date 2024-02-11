@@ -5,7 +5,7 @@ import RegisterUser from "../Registration/registerUser";
 import { useAppDispatch, useAppSelector } from "../../Redux/Store/Hooks";
 import { useNavigate } from "react-router-dom";
 //import { snackBarText } from "../../Redux/Actions/snackbar/snackbarAction";
-import { submitAction } from "../../Redux/Actions/Login/loginActions";
+import { loginStartAction } from "../../Redux/Actions/Login/loginActions";
 //import { snackbarActionTypes } from "../../@types/redux/actions/snackbar/snackbarActionTypes";
 import logo from "../../assets/images/Web capture_5-1-2024_191259_looka.com.png";
 import { GoogleLogin } from "@react-oauth/google";
@@ -31,7 +31,7 @@ export default function Login() {
       // dispatch(snackBarText(snackbarActionTypes.SUCCESS, "Login Success !"))
       navigate("/home");
     } else {
-      dispatch(submitAction({ ...values, expiresIn: 60000 }));
+      dispatch(loginStartAction({ ...values, expiresIn: 60000 }));
       // await axios
       //     .post("https://www.melivecode.com/api/login", { ...values, expiresIn: 60000 })
       //     .then((res) => {
@@ -49,22 +49,7 @@ export default function Login() {
     }
   };
   const signUpSubmit = async (values: object) => {
-    //dispatch(popularList())
-    dispatch(submitAction({ ...values }));
-    // await axios
-    //     .post("https://www.melivecode.com/api/login", { ...values, expiresIn: 60000 })
-    //     .then((res) => {
-    //         if (res.data.status === "ok") {
-    //             dispatch(snackBarText("Success", "Registration Success !"))
-    //             navigate('/home')
-    //         }
-    //     }
-    //     ).catch((err) => {
-    //         dispatch(snackBarText("Failure", "Registration Failed !"))
-    //         throw new SubmissionError({
-    //             _error: "Registration Failed!"
-    //         })
-    //     })
+    dispatch(loginStartAction({ ...values }));
   };
   React.useEffect(() => {
     if (result) {

@@ -22,7 +22,7 @@ async function submitToServer(data: object) {
 
 const loginEpic = (action$: any,getState:any,dispatch: any) =>
   action$.pipe(
-    ofType("REQUEST_SUBMIT"),
+    ofType(loginActionTypes.LOGIN_START),
     mergeMap((action: any) =>
       from(submitToServer(action.payload)).pipe(
         map((res: any) => {
@@ -36,7 +36,7 @@ const loginEpic = (action$: any,getState:any,dispatch: any) =>
           );
           Store.dispatch(popularList());
           return {
-            type: loginActionTypes.FETCH_SUCCESS,
+            type: loginActionTypes.LOGIN_SUCCESS,
             payload: res.data,
           };
         }),
@@ -53,7 +53,7 @@ const loginEpic = (action$: any,getState:any,dispatch: any) =>
                 )
               );
               return {
-                type: "FETCH_USER_FAILURE",
+                type: loginActionTypes.LOGIN_FAILURE,
                 payload: error.message,
                 error: true,
               };
