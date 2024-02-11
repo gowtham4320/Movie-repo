@@ -1,3 +1,5 @@
+import './snackbar.styl'
+
 export function snackBar(status: string) {
   let x = document.getElementsByClassName("snackbar")[0];
 

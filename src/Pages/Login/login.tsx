@@ -10,6 +10,7 @@ import { loginStartAction } from "../../Redux/Actions/Login/loginActions";
 import logo from "../../assets/images/Web capture_5-1-2024_191259_looka.com.png";
 import { GoogleLogin } from "@react-oauth/google";
 import { jwtDecode } from "jwt-decode";
+import { loginActionTypes } from "../../@types/redux/actions/login/loginActionTypes";
 
 export default function Login() {
   const [signup, setsignup] = React.useState<boolean>(false);
@@ -22,30 +23,14 @@ export default function Login() {
   };
 
   const loginSubmit = async (values: { [key: string]: string }) => {
-    //dispatch(popularList())
     if (values.username === "admin" && values.password === "admin") {
       dispatch({
-        type: "FETCH_USER_SUCCESS",
+        type: loginActionTypes.LOGIN_SUCCESS,
         payload: {},
       });
-      // dispatch(snackBarText(snackbarActionTypes.SUCCESS, "Login Success !"))
       navigate("/home");
     } else {
       dispatch(loginStartAction({ ...values, expiresIn: 60000 }));
-      // await axios
-      //     .post("https://www.melivecode.com/api/login", { ...values, expiresIn: 60000 })
-      //     .then((res) => {
-      //         if (res.data.status === "ok") {
-      //             dispatch(snackBarText("Success","Login Success !"))
-      //             navigate('/home')
-      //         }
-      //     }
-      //     ).catch((err) => {
-      //         dispatch(snackBarText("Failure", "Login Failed !"))
-      //         throw new SubmissionError({
-      //             _error:"Incorrect Username or Password"
-      //         })
-      //     })
     }
   };
   const signUpSubmit = async (values: object) => {
@@ -91,7 +76,7 @@ export default function Login() {
                   onSuccess={(credentialResponse) => {
                     jwtDecode(credentialResponse.credential || "")
                       ? dispatch({
-                          type: "FETCH_USER_SUCCESS",
+                          type: loginActionTypes.LOGIN_SUCCESS,
                           payload: {},
                         })
                       : null;
