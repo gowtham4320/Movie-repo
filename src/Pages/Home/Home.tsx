@@ -54,13 +54,14 @@ export default function Home() {
         }
       >
         <div className={searched ? "searchTitle" : "bodyTitle"}>
-          {searched ? "SEARCH RESULT FOR: " + searchText : "POPULAR MOVIES"}
+          {searched ? "SEARCH RESULT FOR: " + searchText : "TRENDING"}
         </div>
         <Grid container className="movies">
           {movieList?.results?.map((movie: any) => (
             <Grid item lg={4} md={6} sm={8} xs={12} key={movie.id}>
               <Card className="movieCard">
                 <div className="movieInfo">
+                  <div className="movieTitle">{movie.title}</div>
                   <div className="movieInfoText"> {movie.overview}</div>
                   <div style={{display:"flex",flexDirection:"row"}}>
                   <Rating
