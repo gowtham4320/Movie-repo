@@ -12,7 +12,6 @@ import { combineEpics, createEpicMiddleware } from "redux-observable";
 import loginEpic from "../Epics/loginEpic";
 import movieEpic from "../Epics/movieEpic";
 import { movieReducer } from "../Reducers/Movies/moviesReducer";
-import movieSearchedEpic from "../Epics/movieSearched";
 
 declare global {
   interface Window {
@@ -32,7 +31,7 @@ const Store = createStore(
   reducer,
   composeEnhancer(applyMiddleware(thunk, epics))
 );
-const allEpics = combineEpics(loginEpic, movieEpic, movieSearchedEpic);
+const allEpics = combineEpics(loginEpic, movieEpic);
 epics.run(allEpics);
 export default Store;
 export type RootState = ReturnType<typeof Store.getState>;

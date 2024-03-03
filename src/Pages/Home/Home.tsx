@@ -1,5 +1,13 @@
 import "./Home.styl";
-import { Card, InputAdornment, TextField, Grid, Rating, IconButton, Tooltip } from "@mui/material";
+import {
+  Card,
+  InputAdornment,
+  TextField,
+  Grid,
+  Rating,
+  IconButton,
+  Tooltip,
+} from "@mui/material";
 import SearchRoundedIcon from "@mui/icons-material/SearchRounded";
 import { useAppDispatch, useAppSelector } from "../../Redux/Store/Hooks";
 import {
@@ -61,29 +69,37 @@ export default function Home() {
             <Grid item lg={4} md={6} sm={8} xs={12} key={movie.id}>
               <Card className="movieCard">
                 <div className="movieInfo">
-                  <div className="movieTitle">{movie.title}</div>
+                  <div className="movieTitle">{movie.title || movie.name}</div>
                   <div className="movieInfoText"> {movie.overview}</div>
-                  <div style={{display:"flex",flexDirection:"row"}}>
-                  <Rating
-                    value={movie.vote_average / 2}
-                    size="large"
-                    precision={0.1}
-                    readOnly
-                    sx={{flexGrow:1}}
-                  />
-                  <Tooltip title="Watch Trailer" placement="top" arrow><IconButton className="trailerButton" ><PlayCircleIcon className="trailerButtonIcon" /></IconButton></Tooltip>
+                  <div style={{ display: "flex", flexDirection: "row" }}>
+                    <Rating
+                      value={movie.vote_average / 2}
+                      size="large"
+                      precision={0.1}
+                      readOnly
+                      sx={{ flexGrow: 1 }}
+                    />
+                    <Tooltip title="Watch Trailer" placement="top" arrow>
+                      <IconButton className="trailerButton">
+                        <PlayCircleIcon className="trailerButtonIcon" />
+                      </IconButton>
+                    </Tooltip>
                   </div>
                 </div>
                 {movie.poster_path === null ? (
-                  <div className="movieTitle">{movie.title}</div>
+                  <div className="movieTitle">{movie.title || movie.name}</div>
                 ) : (
-                  <img
-                    src={"https://image.tmdb.org/t/p/w500" + movie.poster_path}
-                    title={movie.title}
-                    loading="lazy"
-                    width={"100%"}
-                    height={"100%"}
-                  />
+                    <img
+                      src={
+                        "https://image.tmdb.org/t/p/w500" + movie.poster_path
+                      }
+                      title={movie.title || movie.name}
+                      loading="lazy"
+                      width={"100%"}
+                      height={"100%"}
+                      alt={movie.title || movie.name}
+                      sizes="(max-width: 600px) 200px, 50vw"
+                    />
                 )}
               </Card>
             </Grid>

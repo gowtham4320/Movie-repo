@@ -11,10 +11,10 @@
     visibility: hidden
     &.beforeSearch
         visibility: hidden
-        animation: fadeout 0.8s;
+        animation: fade-out 0.8s;
     &.afterSearch
         visibility: visible
-        animation: fadein 0.8s;
+        animation: fade-in 0.8s;
 
 .searchDiv
     padding: 10%
@@ -61,11 +61,14 @@
   height: 92%
   margin: 10px 0px
   position: relative;
+ 
   &:hover
     box-shadow 0px 0px 10px 5px rgb(145, 115, 115)
     cursor: pointer
     .movieInfo
-      visibility: visible;
+      visibility: visible
+      animation: fade-in 0.8s;
+      
 
 .movieTitle
   width: 100%
@@ -79,13 +82,13 @@
   position: absolute  
   background: rgba(35, 36, 37, 0.72)
   color: #fff
-  visibility: hidden
-  transition: opacity .1s, visibility .1s
   display: flex
   flex-direction: column
   overflow: auto
+  animation: fade-out 0.8s;
+  visibility: hidden
   .MuiRating-iconEmpty
-    color rgb(100, 98, 98)
+    color rgb(61, 54, 54)
 
 
 .movieInfoText
@@ -104,13 +107,13 @@
   color: #fff !important
   -webkit-tap-highlight-color: transparent
 
-@keyframes fadein {
-  from {opacity: 0;visibility: hidden}
-  to { opacity: 1;visibility: visible}
+@keyframes fade-in {
+  from {opacity: 0}
+  to { opacity: 1}
 }
 
-@keyframes fadeout {
-  from {opacity: 1;visibility: visible}
-  to { opacity: 0;visibility: hidden}
+@keyframes fade-out {
+  from {opacity: 1}
+  to { opacity: 0}
 }
   

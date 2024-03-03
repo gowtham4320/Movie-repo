@@ -16,7 +16,7 @@ export const movieReducer = (state = initialState, { type, payload }: actionPayl
     case movieActionTypes.MOVIE_LIST:
       return { ...state, movieList: payload };
 
-    case movieActionTypes.MOVIE_SEARCHED_FAILURE:
+    case movieActionTypes.SEARCH_FAILURE:
       return { ...state, error: true };
 
     default:
