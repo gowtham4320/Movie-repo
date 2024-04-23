@@ -6,7 +6,7 @@ import { movieActionTypes } from "../../@types/redux/actions/movies/movieActionT
 
 async function submitToServer() {
   try {
-    const response = axios.get(
+    const response = await axios.get(
       "https://api.themoviedb.org/3/trending/all/day?api_key=8bd650675ecd3ba6656d06a49e5fcc6d"
     );
     return response;
