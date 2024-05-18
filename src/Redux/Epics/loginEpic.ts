@@ -35,6 +35,7 @@ const loginEpic = (action$: any,getState:any,dispatch: any) =>
             )
           );
           Store.dispatch(popularList());
+          sessionStorage.setItem('login',"true")
           return {
             type: loginActionTypes.LOGIN_SUCCESS,
             payload: res.data,

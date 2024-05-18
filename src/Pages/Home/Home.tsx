@@ -16,17 +16,18 @@ import {
 } from "../../Redux/Actions/movies/moviesAction";
 import { useEffect, useState } from "react";
 import PlayCircleIcon from "@mui/icons-material/PlayCircle";
-import TrailerView from "../trailer/trailer.component";
+import { getMovieTrailer } from "../../Redux/Actions/trailer/trailer.action";
 
 export default function Home() {
   const [searchText, setSearchText] = useState<string>("");
   const [searched, setSearched] = useState<boolean>(true);
   const [searchFocus] = useState<boolean>(false);
-  const [check,setCheck] = useState<boolean>(false);
   const { movieList }: any = useAppSelector((state) => state.movies);
   const dispatch = useAppDispatch();
 
-  const handleTrailerClose = () => setCheck(false)
+  const handleTrailerButtonClick = (movieId:string) => {
+    dispatch(getMovieTrailer(movieId));
+  }
 
   useEffect(() => {
     if (searchText.length !== 0) {
@@ -42,7 +43,6 @@ export default function Home() {
   }, [searchText]);
   return (
     <>
-    <TrailerView open={check} handleClose={handleTrailerClose}/>
       <div className="outerBody">
         <div className={!searchFocus ? "searchDiv searchedDiv" : "searchDiv"}>
           <TextField
@@ -88,7 +88,7 @@ export default function Home() {
                         sx={{ flexGrow: 1 }}
                       />
                       <Tooltip title="Watch Trailer" placement="top" arrow>
-                        <IconButton className="trailerButton" onClick={()=>{setCheck(true)}}>
+                        <IconButton className="trailerButton" onClick={()=>{handleTrailerButtonClick(movie.id)}}>
                           <PlayCircleIcon className="trailerButtonIcon" />
                         </IconButton>
                       </Tooltip>

@@ -1,32 +1,40 @@
 import { IconButton, Modal } from "@mui/material";
-import { useEffect } from "react";
+import { useEffect, useState } from "react";
 import "./trailer.styl";
 import CancelRoundedIcon from '@mui/icons-material/CancelRounded';
 
 interface trailerViewProps {
   open: boolean;
-  handleClose: () => void;
+  trailerKey?: string;
+  clearTrailers: ()=>void;
 }
 
-export default function TrailerView(props: trailerViewProps) {
-  const { open, handleClose } = props;
-  useEffect(() => {}, []);
+export default function TrailerViewComponent(props: trailerViewProps) {
+  const { open, trailerKey, clearTrailers } = props;
+  const [openTrailer,setOpenTrailer] = useState<boolean>(open);
+
+  const handleTrailerClose = () => {
+    clearTrailers();
+    setOpenTrailer(false)
+  }
+
+  useEffect(() => {
+    if(open&&trailerKey){
+      setOpenTrailer(true)
+    }
+  });
   return (
     <>
-      <Modal open={open} onClose={handleClose} className="trailerModal">
-        {/* <video controls width="50%">
-      <source src={"https://www.youtube.com/watch?v=tOM-nWPcR4U"} type="video/mkv" />
-      Sorry, your browser doesn't support videos.
-    </video> */}
+      <Modal open={openTrailer} onClose={handleTrailerClose} className="trailerModal">
         <div className="trailerOuterBody">
           <div className="trailerCloseButton">
-            <IconButton size="large" type="button" color="secondary" onClick={handleClose}>
+            <IconButton size="large" type="button" color="secondary" onClick={handleTrailerClose}>
               <CancelRoundedIcon fontSize="large"/>
             </IconButton>
           </div>
           <div className="traileriframeBody">
             <iframe
-              src="https://www.youtube.com/embed/tOM-nWPcR4U?si=-CdS7OX69SvilXnm"
+              src={`https://www.youtube.com/embed/${trailerKey}`}
               title="YouTube video player"
               frameBorder="0"
               allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"

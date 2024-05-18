@@ -15,6 +15,7 @@ export default function AppRoute() {
     window.addEventListener("beforeunload", () => {});
     if (location.pathname === "/") {
       dispatch(logoutAction());
+      sessionStorage.removeItem("login")
       navigate("/", { replace: true, state: { clearHistory: true } });
     }
   }, [navigate]);
