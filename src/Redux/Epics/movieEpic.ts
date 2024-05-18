@@ -19,12 +19,10 @@ async function search(searchQuery: string) {
   try {
     const options = {
       method: "GET",
-      url: "https://api.themoviedb.org/3/search/movie",
+      url: "https://api.themoviedb.org/3/search/multi",
       params: {
         query: searchQuery,
         include_adult: "false",
-        language: "en-US",
-        page: "1",
       },
       headers: {
         accept: "application/json",
@@ -72,9 +70,10 @@ const movieSearchedEpic = (action$: any, { getState, dispatch }: any) =>
     mergeMap((action: any) =>
       from(search(action.payload)).pipe(
         map((res: any) => {
+          //const filterCollection = res.data.results.filter((collection:any)=> collection.video === undefined)
           return {
             type: movieActionTypes.MOVIE_LIST,
-            payload: res.data,
+            payload: res.data
           };
         }),
         catchError((error) =>

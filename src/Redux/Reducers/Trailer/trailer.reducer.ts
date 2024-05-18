@@ -17,6 +17,9 @@ export const trailersReducer = (state = initialState, { type, payload }: actionP
     case trailerActionTypes.GET_TRAILER_SUCCESS:
       return { ...state, trailerList: payload.results, movieId: payload.id };
     
+    case trailerActionTypes.GET_TRAILER_FAILURE:
+      return { ...state, ...initialState, error:true };  
+    
     case trailerActionTypes.CLEAR_TRAILERS:
       return {...state, ...initialState}
 

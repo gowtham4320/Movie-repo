@@ -4,11 +4,11 @@ import { connect } from 'react-redux';
 
 const mapStateToProps = (state:any) =>{
 
-    const trailer = state.trailers.trailerList.filter((trailers:any)=> trailers.name === "Official Trailer")
+    const trailer = state.trailers.trailerList.filter((trailers:any)=> trailers.name === "Official Trailer" || trailers.type === "Trailer")
 
     return {
         open : Boolean(trailer.length),
-        trailerKey : trailer[0]?.key ?? ""
+        trailerKey : trailer[trailer.length-1]?.key ?? ""
     }
 }
 

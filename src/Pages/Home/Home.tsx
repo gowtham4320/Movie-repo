@@ -25,8 +25,8 @@ export default function Home() {
   const { movieList }: any = useAppSelector((state) => state.movies);
   const dispatch = useAppDispatch();
 
-  const handleTrailerButtonClick = (movieId:string) => {
-    dispatch(getMovieTrailer(movieId));
+  const handleTrailerButtonClick = (movieId:string,language:string,type:string) => {
+    dispatch(getMovieTrailer(movieId,language,type));
   }
 
   useEffect(() => {
@@ -88,7 +88,7 @@ export default function Home() {
                         sx={{ flexGrow: 1 }}
                       />
                       <Tooltip title="Watch Trailer" placement="top" arrow>
-                        <IconButton className="trailerButton" onClick={()=>{handleTrailerButtonClick(movie.id)}}>
+                        <IconButton className="trailerButton" onClick={()=>{handleTrailerButtonClick(movie.id,movie.original_language,movie.media_type)}}>
                           <PlayCircleIcon className="trailerButtonIcon" />
                         </IconButton>
                       </Tooltip>

@@ -29,7 +29,7 @@ export default function TrailerViewComponent(props: trailerViewProps) {
         <div className="trailerOuterBody">
           <div className="trailerCloseButton">
             <IconButton size="large" type="button" color="secondary" onClick={handleTrailerClose}>
-              <CancelRoundedIcon fontSize="large"/>
+              <CancelRoundedIcon fontSize="large" className="trailerCloseIcon"/>
             </IconButton>
           </div>
           <div className="traileriframeBody">

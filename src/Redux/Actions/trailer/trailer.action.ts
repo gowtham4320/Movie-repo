@@ -1,9 +1,9 @@
 import { trailerActionTypes } from "../../../@types/redux/actions/trailer/trailerActionType";
 
-export const getMovieTrailer = (movieId: string) => {
+export const getMovieTrailer = (movieId: string,language:string,type:string) => {
   return {
     type: trailerActionTypes.GET_TRAILER,
-    payload: movieId,
+    payload: {movieId,language,type},
   };
 };
 

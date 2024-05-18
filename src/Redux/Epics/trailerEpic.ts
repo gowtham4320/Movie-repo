@@ -4,12 +4,12 @@ import { ofType } from "redux-observable";
 import { mergeMap, map, catchError } from "rxjs/operators";
 import { trailerActionTypes } from "../../@types/redux/actions/trailer/trailerActionType";
 
-async function submitToServer(movieId: string) {
+async function submitToServer({movieId,language,type}:any) {
   console.log(movieId,">>>>")
     try {
       const options = {
         method: "GET",
-        url: "https://api.themoviedb.org/3/movie/"+movieId+"/videos?language=en-US",
+        url: "https://api.themoviedb.org/3/"+type+"/"+movieId+"/videos?language="+language,
         headers: {
           accept: "application/json",
           Authorization:
@@ -37,7 +37,9 @@ const trailerEpic = (action$: any) =>
         catchError((error) =>
           of(error).pipe(
             map((res: any) => {
-              
+              return {
+                type : trailerActionTypes.GET_TRAILER_FAILURE
+              }
             })
           )
         )
