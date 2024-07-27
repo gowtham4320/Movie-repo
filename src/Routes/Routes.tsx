@@ -23,11 +23,11 @@ export default function AppRoute() {
     <>
       <Routes>
         <Route path="/login" element={<Login />} />
-        <Route element={<ProtectLogin />}>
+        {/* <Route element={<ProtectLogin />}> */}
           <Route path="/" element={<Header />}>
             <Route path="/" element={<Home />} />
           </Route>
-        </Route>
+        {/* </Route> */}
       </Routes>
     </>
   );
