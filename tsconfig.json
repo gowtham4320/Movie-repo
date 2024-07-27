@@ -19,7 +19,7 @@
         "isolatedModules": true,
         "noImplicitAny": true,
         "noImplicitThis": true,
-        "noUnusedLocals": true,
+        "noUnusedLocals": false,
         "jsx": "react-jsx"
     },
     "exclude": [

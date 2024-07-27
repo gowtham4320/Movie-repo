@@ -22,10 +22,10 @@ export default function AppRoute() {
   return (
     <>
       <Routes>
-        <Route path="/" element={<Login />} />
+        <Route path="/login" element={<Login />} />
         <Route element={<ProtectLogin />}>
-          <Route path="/home" element={<Header />}>
-            <Route path="/home" element={<Home />} />
+          <Route path="/" element={<Header />}>
+            <Route path="/" element={<Home />} />
           </Route>
         </Route>
       </Routes>
