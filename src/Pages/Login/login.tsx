@@ -28,7 +28,7 @@ export default function Login() {
         type: loginActionTypes.LOGIN_SUCCESS,
         payload: {},
       });
-      navigate("/home");
+      navigate("/");
     } else {
       dispatch(loginStartAction({ ...values, expiresIn: 60000 }));
     }
@@ -38,7 +38,7 @@ export default function Login() {
   };
   React.useEffect(() => {
     if (result) {
-      navigate("/home");
+      navigate("/");
     }
   }, [result]);
 

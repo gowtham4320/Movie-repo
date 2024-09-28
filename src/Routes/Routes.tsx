@@ -13,10 +13,10 @@ export default function AppRoute() {
   const dispatch = useAppDispatch();
   React.useEffect(() => {
     window.addEventListener("beforeunload", () => {});
-    if (location.pathname === "/") {
+    if (location.pathname === "/login") {
       dispatch(logoutAction());
       sessionStorage.removeItem("login")
-      navigate("/", { replace: true, state: { clearHistory: true } });
+      navigate("/login", { replace: true, state: { clearHistory: true } });
     }
   }, [navigate]);
   return (
