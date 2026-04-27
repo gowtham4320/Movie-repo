@@ -14,6 +14,8 @@ import movieEpic from "../Epics/movieEpic";
 import { movieReducer } from "../Reducers/Movies/moviesReducer";
 import trailerEpic from "../Epics/trailerEpic";
 import { trailersReducer } from "../Reducers/Trailer/trailer.reducer";
+import watchEpic from "../Epics/watchEpic";
+import { watchMovieReducer } from "../Reducers/Watch/watch.reducer";
 
 declare global {
   interface Window {
@@ -26,6 +28,7 @@ const reducer = combineReducers({
   snackbar: snackBarReducer,
   movies: movieReducer,
   trailers: trailersReducer,
+  watch: watchMovieReducer,
   form: reduxFormReducer,
 });
 const epics = createEpicMiddleware();
@@ -34,7 +37,7 @@ const Store = createStore(
   reducer,
   composeEnhancer(applyMiddleware(thunk, epics))
 );
-const allEpics = combineEpics(loginEpic, movieEpic, trailerEpic);
+const allEpics = combineEpics(loginEpic, movieEpic, trailerEpic, watchEpic);
 epics.run(allEpics);
 export default Store;
 export type RootState = ReturnType<typeof Store.getState>;

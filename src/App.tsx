@@ -5,6 +5,7 @@ import { Backdrop, Stack } from "@mui/material";
 import AppRoute from "./Routes/Routes";
 import { useAppSelector } from "./Redux/Store/Hooks";
 import { TrailerView } from "./Pages/trailer";
+import { WatchMovie } from "./Pages/watchMovie";
 
 export default function App() {
   const [loading, setLoading] = useState<boolean>(false);
@@ -33,6 +34,7 @@ export default function App() {
   return (
     <>
       <TrailerView/>
+      <WatchMovie/>
       <div className="App">
         <AppRoute />
       </div>

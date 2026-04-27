@@ -16,7 +16,9 @@ import {
 } from "../../Redux/Actions/movies/moviesAction";
 import { useEffect, useState } from "react";
 import PlayCircleIcon from "@mui/icons-material/PlayCircle";
+import LiveTvIcon from '@mui/icons-material/LiveTv';
 import { getMovieTrailer } from "../../Redux/Actions/trailer/trailer.action";
+import { watchMovie } from "../../Redux/Actions/watch/watch.action";
 
 export default function Home() {
   const [searchText, setSearchText] = useState<string>("");
@@ -27,6 +29,10 @@ export default function Home() {
 
   const handleTrailerButtonClick = (movieId:string,language:string,type:string) => {
     dispatch(getMovieTrailer(movieId,language,type));
+  }
+
+  const handleWatchButtonClick = (movieId:string) => {
+    dispatch(watchMovie(movieId));
   }
 
   useEffect(() => {
@@ -90,6 +96,11 @@ export default function Home() {
                       <Tooltip title="Watch Trailer" placement="top" arrow>
                         <IconButton className="trailerButton" onClick={()=>{handleTrailerButtonClick(movie.id,movie.original_language,movie.media_type)}}>
                           <PlayCircleIcon className="trailerButtonIcon" />
+                        </IconButton>
+                      </Tooltip>
+                      <Tooltip title="Watch Now" placement="top" arrow>
+                        <IconButton className="trailerButton" onClick={()=>{handleWatchButtonClick(movie.id)}}>
+                          <LiveTvIcon className="trailerButtonIcon" />
                         </IconButton>
                       </Tooltip>
                     </div>

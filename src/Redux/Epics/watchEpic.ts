@@ -2,13 +2,13 @@ import { from, of } from "rxjs";
 import axios from "axios";
 import { ofType } from "redux-observable";
 import { mergeMap, map, catchError } from "rxjs/operators";
-import { trailerActionTypes } from "../../@types/redux/actions/trailer/trailerActionType";
+import { watchActionTypes } from "../../@types/redux/actions/watch/watchActionType";
 
-async function submitToServer({movieId,language,type}:any) {
+async function submitToServer({movieId}:any) {
     try {
       const options = {
         method: "GET",
-        url: "https://api.themoviedb.org/3/"+type+"/"+movieId+"/videos?language="+language,
+        url: `https://api.themoviedb.org/3/movie/${movieId}/external_ids`,
         headers: {
           accept: "application/json",
           Authorization:
@@ -22,14 +22,14 @@ async function submitToServer({movieId,language,type}:any) {
     }
   }
 
-const trailerEpic = (action$: any) =>
+const watchEpic = (action$: any) =>
   action$.pipe(
-    ofType(trailerActionTypes.GET_TRAILER),
+    ofType(watchActionTypes.WATCH_NOW),
     mergeMap((action: any) =>
       from(submitToServer(action.payload)).pipe(
         map((res: any) => {
           return {
-            type: trailerActionTypes.GET_TRAILER_SUCCESS,
+            type: watchActionTypes.WATCH_MOVIE_SUCCESS,
             payload: res.data,
           }
         }),
@@ -37,7 +37,7 @@ const trailerEpic = (action$: any) =>
           of(error).pipe(
             map((res: any) => {
               return {
-                type : trailerActionTypes.GET_TRAILER_FAILURE
+                type : watchActionTypes.WATCH_MOVIE_FAILURE
               }
             })
           )
@@ -53,4 +53,4 @@ const trailerEpic = (action$: any) =>
     )
   );
 
-export default trailerEpic;
+export default watchEpic;
